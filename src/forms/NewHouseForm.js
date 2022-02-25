@@ -7,34 +7,25 @@ export const NewHouseForm = (props) => {
 	const [bedrooms, setBedrooms] = useState('');
 	const [bathrooms, setBathrooms] = useState('');
 	const [price, setPrice] = useState('');
-	const [name, setName] = useState('');
-	const [text, setText] = useState('');
+	const [notes, setNotes] = useState('');
 
 	//define onSubmit
 	const onSubmit = (event) => {
 		event.preventDefault();
-		if (location && squareFootage) {
-			props.addNewHouse({
-				location,
-				squareFootage,
-				bedrooms,
-				bathrooms,
-				price,
-				notes: {
-					name,
-					text,
-				},
-			});
-			setLocation(''); //reset value
-			setSquareFootage(''); //reset value
-			setBedrooms(''); //reset value
-			setBathrooms(''); //reset value
-			setPrice(''); //reset value
-			setName(''); //reset value
-			setText(''); //reset value
-		} else {
-			console.log('invalid input');
-		}
+		props.addNewHouse({
+			location,
+			squareFootage,
+			bedrooms,
+			bathrooms,
+			price,
+			notes,
+		});
+		setLocation(''); //reset value
+		setSquareFootage(''); //reset value
+		setBedrooms(''); //reset value
+		setBathrooms(''); //reset value
+		setPrice(''); //reset value
+		setNotes(''); //reset value
 	};
 
 	return (
@@ -75,15 +66,9 @@ export const NewHouseForm = (props) => {
 				/>
 				<input
 					type='text'
-					placeholder='Name this note'
-					onChange={(event) => setName(event.target.value)}
-					value={name}
-				/>
-				<input
-					type='text'
-					placeholder='Add your note text here'
-					onChange={(event) => setText(event.target.value)}
-					value={text}
+					placeholder='Add any notes here'
+					onChange={(event) => setNotes(event.target.value)}
+					value={notes}
 				/>
 				<button type='submit'>Add House</button>
 			</form>

@@ -1,42 +1,48 @@
 import React from 'react';
-import { House } from './House';
-import { House_Hunt_API } from '../Api/HouseHuntAPI';
+import axios from 'axios';
+import House from './House';
 
-export class HouseList extends React.Component {
+export default class HouseList extends React.Component {
 	state = {
 		houses: [],
 	};
 
 	componentDidMount() {
-		this.fetchHouses();
+		axios.get(
+			'https://crudcrud.com/api/776d23438df143b9be860123700b634d/houses'
+		).then((res) => {
+			const houses = res.data;
+			this.setState({ houses });
+		});
 	}
-
-	fetchHouses = async () => {
-		const houses = await House_Hunt_API.get();
-		this.setState({ houses });
-	};
-
-	updateHouse = async (updatedHouse) => {
-		await House_Hunt_API.put(updatedHouse);
-		this.fetchHouses();
-	};
-
-	addNewHouse = async (house) => {
-		await House_Hunt_API.post(house);
-		this.fetchHouses();
-	};
 
 	render() {
 		return (
-			<div className='house-list'>
-				{this.state.houses.map((house) => (
-					<House
-						house={house}
-						key={house._id}
-						updateHouse={this.updateHouse}
-					/>
-				))}
-				{/* <NewHouseForm /> */}
+			<div className='container'>
+				<ul>
+					{this.state.houses.map((house) => (
+						<li key={house._id}>{house.location}</li>
+					))}
+				</ul>
+				<table>
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Location</th>
+							<th>Square Footage</th>
+							<th>Bedrooms</th>
+							<th>Bathrooms</th>
+							<th>Price</th>
+							<th>Notes</th>
+							<th>Modify House</th>
+						</tr>
+					</thead>
+					<tbody>
+						{this.state.houses.map((house) => (
+							<House key={house._id} house={house} />
+						))}
+					</tbody>
+				</table>
 			</div>
 		);
 	}

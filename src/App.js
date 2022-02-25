@@ -1,12 +1,20 @@
 import React, { Component } from 'react';
-import './App.css';
-import { HouseList } from '../src/Components/HouseList';
+import HouseList from './Components/HouseList';
 
 class App extends Component {
 	render() {
 		return (
-			<div>
-				<HouseList />
+			<div className='container'>
+				<div>
+					<h1 className='text-center'>House Hunt</h1>
+					<h2>
+						Compare Houses You've Visited to Pick Your Next
+						Home
+					</h2>
+				</div>
+				<div>
+					<HouseList />
+				</div>
 			</div>
 		);
 	}

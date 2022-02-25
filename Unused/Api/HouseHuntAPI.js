@@ -1,12 +1,12 @@
 import React from 'react';
 
-const House_Hunt_Endpoint =
+const ENDPOINT =
 	'https://crudcrud.com/api/776d23438df143b9be860123700b634d/houses';
 
 class HouseHuntAPI {
 	get = async () => {
 		try {
-			const response = await fetch(House_Hunt_Endpoint);
+			const response = await fetch(ENDPOINT);
 			const data = await response.json();
 			return data;
 		} catch (exception) {
@@ -19,16 +19,13 @@ class HouseHuntAPI {
 
 	put = async (house) => {
 		try {
-			const response = await fetch(
-				`${House_Hunt_Endpoint}/${house._id}`,
-				{
-					method: 'PUT',
-					headers: {
-						'Content-Type': 'application/json',
-					},
-					body: JSON.stringify(house),
-				}
-			);
+			const response = await fetch(`${ENDPOINT}/${house._id}`, {
+				method: 'PUT',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(house),
+			});
 			return await response.json();
 		} catch (exception) {
 			console.log(
@@ -40,7 +37,7 @@ class HouseHuntAPI {
 
 	post = async (house) => {
 		try {
-			const response = await fetch(`${House_Hunt_Endpoint}`, {
+			const response = await fetch(`${ENDPOINT}`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
@@ -57,4 +54,4 @@ class HouseHuntAPI {
 	};
 }
 
-export const House_Hunt_API = new HouseHuntAPI();
+export const HouseHuntApi = new HouseHuntAPI();
