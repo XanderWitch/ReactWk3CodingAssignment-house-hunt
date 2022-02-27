@@ -1,19 +1,26 @@
 import React, { Component } from 'react';
-import HouseList from './Components/HouseList';
+import ReadHouse from '../src/Components/ReadHouse';
+import AddHouse from '../src/Components//AddHouse';
+
+import 'bootstrap/dist/css/bootstrap.css';
 
 class App extends Component {
 	render() {
 		return (
-			<div className='container'>
-				<div>
-					<h1 className='text-center'>House Hunt</h1>
-					<h2>
-						Compare Houses You've Visited to Pick Your Next
-						Home
+			<div>
+				<div className='top-bar'>
+					<h1 className='title'>HOUSE HUNT</h1>
+					<h2 className='title'>
+						Compare Houses You've Visited to
+						<br />
+						Pick Your Next Home
 					</h2>
 				</div>
 				<div>
-					<HouseList />
+					<ReadHouse />
+				</div>
+				<div>
+					<AddHouse />
 				</div>
 			</div>
 		);
